@@ -10,7 +10,7 @@ Handling dynamic elements using Explicit Waits
 
 Generating HTML test reports
 
-The framework follows the Page Object Model (POM) design pattern and uses pytest for execution.
+The framework follows the Page Object Model (POM) design pattern.
 
 **Features**
 Login Automation using credentials from config.json
@@ -21,24 +21,17 @@ Explicit Waits for stable element handling
 
 Assertions to validate functionality
 
-HTML Reports with pytest-html or Allure
+HTML Reports
 
-Screenshot capture on test failures
-
-Headless mode support for CI/CD
-
+Screenshot capture on test failure
 
 **Tech Stack**
 Language: Python 3.x
 
 Frameworks & Libraries:
-
-Selenium WebDriver
-
-Pytest
-
-Faker
-
-Pytest-HTML / Allure Reports
+SeleniumLibrary
+OperatingSystem
+Collections
+JSONLibrary
 
 Design Pattern: Page Object Model (POM)
