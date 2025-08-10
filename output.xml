@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3 (Python 3.13.4 on darwin)" generated="2025-08-08T20:52:42.696385" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Form Submission" source="/Users/abhinavsrivastava/Desktop/robot_selenium_automation/tests/Test_Form_Submission.robot">
+<kw name="Open Browser To Form URL" type="SETUP">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2025-08-08T20:52:42.775879" level="INFO">${config} = {'base_url': 'https://www.saucedemo.com/', 'username': 'standard_user', 'password': 'secret_sauce', 'form_url': 'https://the-internet.herokuapp.com/login'}</msg>
+<var>${config}</var>
+<arg>${CONFIG_FILE}</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2025-08-08T20:52:42.775639" elapsed="0.000658"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-08-08T20:52:42.776920" level="INFO">Opening browser 'chrome' to base url 'https://the-internet.herokuapp.com/login'.</msg>
+<msg time="2025-08-08T20:52:42.848601" level="WARN">The chromedriver version (137.0.7151.70) detected in PATH at /Library/Frameworks/Python.framework/Versions/3.13/bin/chromedriver might not be compatible with the detected chrome version (138.0.7204.184); currently, chromedriver 138.0.7204.183 is recommended for chrome 138.*, so it is advised to delete the driver in PATH and retry</msg>
+<arg>${config["form_url"]}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-08-08T20:52:42.776642" elapsed="4.667460"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-08-08T20:52:47.445595" elapsed="0.169299"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:42.775320" elapsed="4.839851"/>
+</kw>
+<test id="s1-t1" name="Form Submission Test" line="19">
+<kw name="Fill Form With Random Data" owner="FormPage">
+<kw name="Generate Username" owner="FakeData">
+<msg time="2025-08-08T20:52:47.616645" level="INFO">${rand_name} = mfmawqwc</msg>
+<var>${rand_name}</var>
+<status status="PASS" start="2025-08-08T20:52:47.616437" elapsed="0.000938"/>
+</kw>
+<kw name="Generate Password" owner="FakeData">
+<msg time="2025-08-08T20:52:47.617915" level="INFO">${rand_pass} = ^Lcv6gO82H</msg>
+<var>${rand_pass}</var>
+<status status="PASS" start="2025-08-08T20:52:47.617538" elapsed="0.000515"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T20:52:47.618979" level="INFO">Typing text 'mfmawqwc' into text field 'id:username'.</msg>
+<arg>${NAME_INPUT}</arg>
+<arg>${rand_name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T20:52:47.618183" elapsed="0.083107"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T20:52:47.701621" level="INFO">Typing text '^Lcv6gO82H' into text field 'id:password'.</msg>
+<arg>${PASSWORD_INPUT}</arg>
+<arg>${rand_pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T20:52:47.701441" elapsed="0.031444"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:47.616099" elapsed="0.116897"/>
+</kw>
+<kw name="Submit Form After Filling Data" owner="FormPage">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-08-08T20:52:47.733578" level="INFO">Clicking button 'xpath://button[@type='submit']'.</msg>
+<arg>${SUBMIT_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T20:52:47.733424" elapsed="0.027180"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:47.733212" elapsed="0.027492"/>
+</kw>
+<kw name="Verify Success Message" owner="FormPage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${SUCCESS_MESSAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-08-08T20:52:47.761103" elapsed="0.718400"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T20:52:48.495362" level="INFO">${msg} = Your username is invalid!
+×</msg>
+<var>${msg}</var>
+<arg>${SUCCESS_MESSAGE}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T20:52:48.479965" elapsed="0.015570"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${msg.lower()}</arg>
+<arg>your username is invalid!</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-08-08T20:52:48.495749" elapsed="0.000584"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:47.760918" elapsed="0.735514"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:47.615321" elapsed="0.881358"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-08-08T20:52:48.498636" elapsed="0.069946"/>
+</kw>
+<status status="PASS" start="2025-08-08T20:52:42.698455" elapsed="5.870229"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Form Submission" id="s1" pass="1" fail="0" skip="0">Test Form Submission</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-08-08T20:52:42.848601" level="WARN">The chromedriver version (137.0.7151.70) detected in PATH at /Library/Frameworks/Python.framework/Versions/3.13/bin/chromedriver might not be compatible with the detected chrome version (138.0.7204.184); currently, chromedriver 138.0.7204.183 is recommended for chrome 138.*, so it is advised to delete the driver in PATH and retry</msg>
+</errors>
+</robot>
